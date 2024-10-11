@@ -1,0 +1,32 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+*.sqlite3
+
+# Celerybeat scheduler file:
+celerybeat-schedule
+
+# Environment files
+bin/
+lib/
+lib64
+pyvenv.cfg
+share/
+
+#secrets
+.env
+
+#IDE 
+.vscode/
