@@ -150,5 +150,3 @@ reconcyl/
 - [Celery](https://docs.celeryproject.org/)
 - [Redis](https://redis.io/)
 - [Pandas](https://pandas.pydata.org/)
-
-## License
