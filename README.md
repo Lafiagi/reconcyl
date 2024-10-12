@@ -2,6 +2,16 @@
 
 **Reconcyl** is a Django-based project with a REST API that handles file uploads for reconciliation processing. The API accepts two CSV files (source and target) and processes the reconciliation in the background using Celery and Redis. The API provides detailed reconciliation reports in JSON, CSV, or HTML format.
 
+
+
+## Screenshots
+
+### Email Screenshot
+![Email Screenshot](assets/email_report.jpeg)
+
+### Report Screenshot
+![Report Screenshot](assets/htm_report.jpeg)
+
 ## Features
 
 - Upload two CSV files for reconciliation (source and target).
@@ -15,6 +25,31 @@
 - Retrieve reconciliation results in different formats (CSV, JSON, HTML).
 - Robust error handling for file upload and processing failures.
 
+# Reconciliation Process
+
+    Upload CSV Files: Use the /upload/ endpoint to upload the source and target CSV files for reconciliation. You can also specify an optional email and report_format (json, csv, or html).
+
+    Check Task Status: After uploading the files, you will receive a task_id. You can check the status of the task at the /reconciliation/<task_id>/ endpoint.
+
+    Download the Report: Once the task is complete, you can download the report in the desired format by appending the format parameter (json, csv, or html) to the URL:
+
+    bash
+
+    GET /reconciliation/<task_id>/?format=html
+
+# Sending Email Reports
+
+    Reconcyl automatically sends an email containing the reconciliation report in the requested format if the email field is provided during file upload.
+
+
+## Potential Improvements
+
+Chunk Processing: For large datasets, split the CSV files into manageable chunks and process each chunk asynchronously, then combine the results.
+Task Queue Prioritization: Use Celery’s task prioritization feature to handle smaller tasks faster while large tasks run in the background.
+Async I/O: Consider using asynchronous I/O libraries like aiohttp for faster file reading and API calls, allowing tasks to be processed concurrently without blocking.
+   ```bash
+   celery -A reconcyl worker --loglevel=info
+   ```
 ## Technologies
 
 - **Python** (Django, Django REST Framework)
@@ -64,14 +99,20 @@ Ensure you have the following installed:
    Add the following environment variables to the `.env` file:
 
    ```bash
-   SECRET_KEY=your-secret-key
-   DEBUG=True
-   ALLOWED_HOSTS=127.0.0.1,localhost
+    SECRET_KEY=your-securekey
+    DEBUG=True
+    ALLOWED_HOSTS="your allowed hosts"
+    DATABASE_URL="url db url string"
+    CELERY_BROKER_URL = 'broker url'
+    CELERY_RESULT_BACKEND ="celerey backend"
+    MAILGUN_BASE_URL=your_mailgun_key
+    MAILGUN_API_KEY=key-your-key
    ```
 
 5. **Configure Redis**:
 
    Ensure Redis is installed and running on your local machine. You can install Redis by following the official guide [here](https://redis.io/download).
+   run `redis-server` on your terminal start the server
 
 6. **Apply migrations**:
 
