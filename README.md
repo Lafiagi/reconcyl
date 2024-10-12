@@ -47,9 +47,7 @@ Reconcyl automatically sends an email containing the reconciliation report in th
 Chunk Processing: For large datasets, split the CSV files into manageable chunks and process each chunk asynchronously, then combine the results.
 Task Queue Prioritization: Use Celery’s task prioritization feature to handle smaller tasks faster while large tasks run in the background.
 Async I/O: Consider using asynchronous I/O libraries like aiohttp for faster file reading and API calls, allowing tasks to be processed concurrently without blocking.
-   ```bash
-   celery -A reconcyl worker --loglevel=info
-   ```
+
 ## Technologies
 
 - **Python** (Django, Django REST Framework)
