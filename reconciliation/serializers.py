@@ -6,3 +6,7 @@ class FileUploadSerializer(serializers.Serializer):
     target = serializers.FileField()
     email = serializers.CharField(required=False)
     report_format = serializers.CharField(required=False)
+
+
+class ReconciliationResulSerializer(serializers.Serializer):
+    report_format = serializers.CharField(required=False)
