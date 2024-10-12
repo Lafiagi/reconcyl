@@ -98,7 +98,7 @@ Ensure you have the following installed:
 
    ```bash
     SECRET_KEY=your-securekey
-    DEBUG=True
+    DEBUG=False
     ALLOWED_HOSTS="your allowed hosts"
     DATABASE_URL="url db url string"
     CELERY_BROKER_URL = 'broker url'
