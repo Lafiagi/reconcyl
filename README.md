@@ -27,19 +27,19 @@
 
 # Reconciliation Process
 
-    Upload CSV Files: Use the /upload/ endpoint to upload the source and target CSV files for reconciliation. You can also specify an optional email and report_format (json, csv, or html).
+Upload CSV Files: Use the /upload/ endpoint to upload the source and target CSV files for reconciliation. You can also specify an optional email and report_format (json, csv, or html).
 
-    Check Task Status: After uploading the files, you will receive a task_id. You can check the status of the task at the /reconciliation/<task_id>/ endpoint.
+Check Task Status: After uploading the files, you will receive a task_id. You can check the status of the task at the /reconciliation/<task_id>/ endpoint.
 
-    Download the Report: Once the task is complete, you can download the report in the desired format by appending the format parameter (json, csv, or html) to the URL:
+Download the Report: Once the task is complete, you can download the report in the desired format by appending the format parameter (json, csv, or html) to the URL:
 
-    bash
+bash
 
-    GET /reconciliation/<task_id>/?format=html
+GET /reconciliation/<task_id>/?format=html
 
 # Sending Email Reports
 
-    Reconcyl automatically sends an email containing the reconciliation report in the requested format if the email field is provided during file upload.
+Reconcyl automatically sends an email containing the reconciliation report in the requested format if the email field is provided during file upload.
 
 
 ## Potential Improvements
