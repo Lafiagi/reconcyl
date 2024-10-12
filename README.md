@@ -25,6 +25,31 @@
 - Retrieve reconciliation results in different formats (CSV, JSON, HTML).
 - Robust error handling for file upload and processing failures.
 
+# Reconciliation Process
+
+    Upload CSV Files: Use the /upload/ endpoint to upload the source and target CSV files for reconciliation. You can also specify an optional email and report_format (json, csv, or html).
+
+    Check Task Status: After uploading the files, you will receive a task_id. You can check the status of the task at the /reconciliation/<task_id>/ endpoint.
+
+    Download the Report: Once the task is complete, you can download the report in the desired format by appending the format parameter (json, csv, or html) to the URL:
+
+    bash
+
+    GET /reconciliation/<task_id>/?format=html
+
+# Sending Email Reports
+
+    Reconcyl automatically sends an email containing the reconciliation report in the requested format if the email field is provided during file upload.
+
+
+## Potential Improvements
+
+Chunk Processing: For large datasets, split the CSV files into manageable chunks and process each chunk asynchronously, then combine the results.
+Task Queue Prioritization: Use Celery’s task prioritization feature to handle smaller tasks faster while large tasks run in the background.
+Async I/O: Consider using asynchronous I/O libraries like aiohttp for faster file reading and API calls, allowing tasks to be processed concurrently without blocking.
+   ```bash
+   celery -A reconcyl worker --loglevel=info
+   ```
 ## Technologies
 
 - **Python** (Django, Django REST Framework)
